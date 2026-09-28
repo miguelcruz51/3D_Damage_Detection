@@ -11,6 +11,8 @@ The forward pass returns (log_probs, global_features) where global_features
 is the bottleneck feature tensor [B, 1024, 1].
 
 Best result: PR-AUC 0.9201 with BoundaryAwareLoss (172 epochs).
+
+Source: Xu Yan, "Pointnet_Pointnet2_pytorch" (2019), adapted for this project.
 """
 
 import torch

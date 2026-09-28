@@ -155,9 +155,55 @@ This work targets **automated repair of metallic components**: reliable, automat
 localization of surface damage is the first step toward robotic or automated repair
 workflows, replacing slow and subjective manual inspection.
 
+## Acknowledgements
+
+This project started from
+[Pointnet_Pointnet2_pytorch](https://github.com/yanx27/Pointnet_Pointnet2_pytorch) by Xu Yan.
+The PointNet and PointNet++ implementations, the shared set-abstraction / feature-propagation
+layers (`src/models/pointnet2_utils.py`, `src/models/pointnet_utils.py`), the point-cloud
+augmentation functions, and the overall training-script structure derive from that repository
+and were adapted here for binary damage segmentation. Full credit to the original authors.
+
+If you use this repository, please also cite the upstream work:
+
+```bibtex
+@article{Pytorch_Pointnet_Pointnet2,
+  Author  = {Xu Yan},
+  Title   = {Pointnet/Pointnet++ Pytorch},
+  Journal = {https://github.com/yanx27/Pointnet_Pointnet2_pytorch},
+  Year    = {2019}
+}
+
+@InProceedings{yan2020pointasnl,
+  title   = {PointASNL: Robust Point Clouds Processing using Nonlocal Neural Networks with Adaptive Sampling},
+  author  = {Yan, Xu and Zheng, Chaoda and Li, Zhen and Wang, Sheng and Cui, Shuguang},
+  journal = {Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
+  year    = {2020}
+}
+
+@InProceedings{yan2021sparse,
+  title   = {Sparse Single Sweep LiDAR Point Cloud Segmentation via Learning Contextual Shape Priors from Scene Completion},
+  author  = {Yan, Xu and Gao, Jiantao and Li, Jie and Zhang, Ruimao and Li, Zhen and Huang, Rui and Cui, Shuguang},
+  journal = {AAAI Conference on Artificial Intelligence ({AAAI})},
+  year    = {2021}
+}
+
+@InProceedings{yan20222dpass,
+  title   = {2DPASS: 2D Priors Assisted Semantic Segmentation on LiDAR Point Clouds},
+  author  = {Xu Yan and Jiantao Gao and Chaoda Zheng and Chao Zheng and Ruimao Zhang and Shuguang Cui and Zhen Li},
+  journal = {ECCV},
+  year    = {2022}
+}
+```
+
+The remaining architectures follow their respective original papers: DGCNN (Wang et al., 2019),
+KPConv (Thomas et al., 2019), and Point Transformer (Zhao et al., 2021). Loss functions follow
+Focal Loss (Lin et al., 2017), Tversky Loss (Salehi et al., 2017), and Lovász-Softmax
+(Berman et al., 2018), as referenced in `src/models/losses.py`.
+
 ## Citation
 
-```
+```bibtex
 @misc{damage_detection_3d,
   title  = {3D Damage Detection on Metallic Components},
   author = {[Author]},

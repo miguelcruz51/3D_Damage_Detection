@@ -9,9 +9,12 @@ which issues were found and addressed.
 
 ## 1. Original Repository Structure
 
-The original repository was a research working directory built on top of a
-PointNet / PointNet++ template and progressively extended for a 3D point-cloud damage
-detection study. The meaningful file groups are summarized below.
+The original repository was a research working directory built on top of the
+[Pointnet_Pointnet2_pytorch](https://github.com/yanx27/Pointnet_Pointnet2_pytorch) template by
+Xu Yan, and progressively extended for a 3D point-cloud damage detection study. Files described
+below as "inherited from the base PointNet framework" originate from that repository; see the
+Acknowledgements section of the top-level `README.md` for citations. The meaningful file groups
+are summarized below.
 
 ### Training scripts (root)
 

@@ -9,6 +9,8 @@ Output format: [B, N, 2]  — per-point log-probabilities (healthy / damaged)
 
 The forward pass returns (log_probs, trans_feat) where trans_feat is the
 feature-transform matrix used for the optional regularization loss.
+
+Source: Xu Yan, "Pointnet_Pointnet2_pytorch" (2019), adapted for this project.
 """
 
 import torch
