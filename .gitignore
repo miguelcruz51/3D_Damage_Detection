@@ -1,0 +1,14 @@
+log/
+*.pth
+venv/
+__pycache__/
+*.pyc
+
+# Test tooling caches (regenerated on each run)
+.pytest_cache/
+.hypothesis/
+
+data/
+*.deb
+*.run
+cuda_*.run

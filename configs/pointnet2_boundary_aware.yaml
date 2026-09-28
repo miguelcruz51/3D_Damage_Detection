@@ -1,0 +1,50 @@
+# =============================================================================
+# Best-performing experiment configuration.
+#
+# PointNet++ (SSG) + Boundary-Aware loss.
+# Reproduces the top result from the 49-experiment study:
+#   PR-AUC = 0.9201 | F1 = 0.8543 | mIoU = 0.8358 | converged in 172 epochs.
+#
+# Parameter values are taken directly from the recorded experiment parameters
+# for run "pointnet2_boundary_aware" (see
+# model_experiments/experiment_parameters_pointnet2.csv).
+# =============================================================================
+
+# --- Model -------------------------------------------------------------------
+model: pointnet2_dmg_seg_ssg   # Architecture module name under src/models/
+
+# --- Optimization ------------------------------------------------------------
+batch_size: 24                 # Samples per batch (fits an 8GB RTX 2080)
+epoch: 200                     # Maximum training epochs (early stopping applies)
+learning_rate: 0.001           # Initial Adam learning rate
+optimizer: Adam                # Optimizer: Adam or SGD
+decay_rate: 0.0001             # Weight decay (L2 regularization) for Adam
+scheduler: cosine              # LR schedule: cosine or step
+step_size: 20                  # Step scheduler: epochs between LR decays (unused for cosine)
+lr_decay: 0.5                  # Step scheduler: multiplicative LR decay factor (unused for cosine)
+
+# --- Input -------------------------------------------------------------------
+npoint: 1024                   # Points sampled per patch fed to the model
+normal: true                   # Use surface normals (6-channel input) in addition to XYZ
+
+# --- Loss function -----------------------------------------------------------
+loss_function: boundary_aware  # Up-weights points near the healthy/damaged boundary
+boundary_emphasis: 0.5         # Boundary weighting factor for BoundaryAwareLoss
+
+# --- Class balancing ---------------------------------------------------------
+balancing_method: fixed_weights  # none | fixed_weights | auto_weights | weighted_sampler
+fixed_class_weights: [1.0, 45.0] # Loss weights for [healthy, damaged] under fixed_weights
+oversample_factor: 3.0           # Damaged oversampling factor (only for weighted_sampler)
+
+# --- Data augmentation -------------------------------------------------------
+augment: basic                 # none | basic (scale + shift) | advanced (+ jitter)
+
+# --- Reproducibility ---------------------------------------------------------
+seed: 42                       # Seed for Python / NumPy / Torch / CUDA RNGs
+
+# --- Early stopping ----------------------------------------------------------
+early_stop_metric: pr_auc      # Metric monitored for best-checkpoint / stopping
+early_stop_patience: 100       # Epochs without improvement before stopping
+
+# --- Dataset -----------------------------------------------------------------
+data_root: ../3DL-Based /data/damaged_components/  # NPZ patch dataset (relative to repo root)
